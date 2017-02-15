@@ -14,6 +14,7 @@ module.exports = function (app) {
   let methodOverride = require('method-override')
   let static = require('serve-static')
   let directoryListing = require('serve-index')
+  let db = require('./dbconnection') // do something with it
 
 
   // Set some global properties
