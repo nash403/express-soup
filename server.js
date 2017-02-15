@@ -6,6 +6,7 @@ let app = require('express')()
  */
 // Populate environment variables
 require('dotenv').config()
+
 // Configure our server app
 app = require('./express-config')(app)
 
