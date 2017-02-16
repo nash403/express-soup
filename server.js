@@ -1,5 +1,7 @@
 let chalk = require('chalk')
 let app = require('express')()
+// To enable HTTPS, you can start by uncomment and complete the following lines that concern https.
+// let fs = require('fs')
 
 /**
  * App configuration
@@ -9,6 +11,12 @@ require('dotenv').config()
 
 // Configure our server app
 app = require('./express-config')(app)
+let http = require('http').createServer(app)
+// let https = require('https').createServer({
+//     /* HTTPS options */
+//     key: fs.readFileSync(/* path */),
+//     cert: fs.readFileSync(/* path */)
+//   }, app)
 
 /**
  * I can start putting my middlewares here
@@ -31,6 +39,24 @@ if (process.env.NODE_ENV === 'development') {
   app.use(require('errorhandler')())
 }
 
+// production error handler
+// no stacktraces leaked to user
+app.use((err, req, res, next) => {
+  let status = err.status || 500
+  res.format({
+    json: _ => res.status(status).json({
+      message: err.message,
+      error: {}
+    }),
+    html: _ => res.status(status).render('error', {
+      message: err.message,
+      error: {}
+    }),
+    'default': _ => res.status(status).send('Something bad happened.')
+  })
+  console.error(err)
+})
+
 // Last middleware.
 // Assume 404 since no middleware responded
 app.use(function(req, res, next){
@@ -39,8 +65,14 @@ app.use(function(req, res, next){
 
 // Start listening
 if (!module.parent) {
-  let port = app.get('port')
-  app.listen(port, function() {
-    console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), port, app.get('env'))
+  // HTTP server
+  let http_port = app.get('http_port')
+  http.listen(http_port, function() {
+    console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), http_port, app.get('env'))
   })
+  // HTTPS server
+  // let https_port = app.get('https_port')
+  // https.listen(https_port, function() {
+  //   console.log('%s Secure App is running at http://localhost:%d in %s mode', chalk.green('✓'), https_port, app.get('env'))
+  // })
 }

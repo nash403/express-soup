@@ -14,11 +14,14 @@ module.exports = function (app) {
   let methodOverride = require('method-override')
   let static = require('serve-static')
   let directoryListing = require('serve-index')
+  let favicon = require('serve-favicon')
+
   let db = require('./dbconnection') // do something with it
 
 
   // Set some global properties
-  app.set('port', process.env.SERVER_PORT || 8000)
+  app.set('http_port', process.env.SERVER_HTTP_PORT || 8000)
+  app.set('https_port', process.env.SERVER_HTTPS_PORT || 8001)
   app.set('view engine', 'jade')
   app.set('views', path.join(__dirname, 'views'))
 
@@ -65,6 +68,9 @@ module.exports = function (app) {
   // Serve static files and directory listing. Edit paths at your convenience.
   app.use(static(path.join(__dirname, 'public')))
   app.use('/ftp', directoryListing(path.join(__dirname, 'ftp'), {icons: true}))
+
+  // Change the dummy favicon.ico in the public folder
+  app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
   return app
 }
