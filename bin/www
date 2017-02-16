@@ -1,4 +1,7 @@
+#!/usr/bin/env node
+
 let chalk = require('chalk')
+let path = require('path')
 let app = require('express')()
 // To enable HTTPS, you can start by uncomment and complete the following lines that concern https.
 // let fs = require('fs')
@@ -7,10 +10,10 @@ let app = require('express')()
  * App configuration
  */
 // Populate environment variables
-require('dotenv').config()
+require('dotenv').config({path: path.join(__dirname, '..', '.env')})
 
 // Configure our server app
-app = require('./express-config')(app)
+app = require('../express-config')(app)
 let http = require('http').createServer(app)
 // let https = require('https').createServer({
 //     /* HTTPS options */
