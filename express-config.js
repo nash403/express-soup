@@ -55,10 +55,10 @@ module.exports = function (app) {
     })*/
   }))
 
-  // If you use passport, here should be a good place to call passport.initialize() and passport.session().
-
   // Add support for flash messages
   app.use(flash())
+
+  // If you use passport, here should be a good place to call passport.initialize() and passport.session().
 
   // Supply some utilities to manage pagination
   app.use(paginate.middleware(10,50))
