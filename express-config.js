@@ -25,20 +25,24 @@ module.exports = function (app) {
   app.set('view engine', 'jade')
   app.set('views', path.join(__dirname, 'views'))
 
-  if (!module.parent) app.use(logger('dev'))
+  app.use(logger('dev'))
   // Secure your app
   app.use(cors())
   app.use(helmet())
 
-  // Monit the activity of your app. Visit /status (which is the default. you can edit it).
-  app.use(monitor());
-
   // Optimize your app by compressing all your responses
   app.use(compression())
 
+  // Serve static files and directory listing. Edit paths at your convenience.
+  app.use(static(path.join(__dirname, 'public')))
+  app.use('/ftp', directoryListing(path.join(__dirname, 'ftp'), {icons: true}))
+
+  // Monit the activity of your app. Visit /status (which is the default. you can edit it).
+  app.use(monitor())
+
   // Supply form utilities
-  app.use(formidable({ uploadDir: path.join(__dirname,'uploads_tmp'), multiples: true }))
-  app.use(validator())
+  // app.use(formidable({ uploadDir: path.join(__dirname,'uploads_tmp'), multiples: true }))
+  // app.use(validator())
 
   // Session & cookie
   app.use(cookieParser())
@@ -66,12 +70,8 @@ module.exports = function (app) {
   // Allow overriding methods in query (?_method=put)
   app.use(methodOverride('_method'))
 
-  // Serve static files and directory listing. Edit paths at your convenience.
-  app.use(static(path.join(__dirname, 'public')))
-  app.use('/ftp', directoryListing(path.join(__dirname, 'ftp'), {icons: true}))
-
   // Change the dummy favicon.ico in the public folder
-  app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+  // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
   return app
 }

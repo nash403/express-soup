@@ -14,24 +14,14 @@ require('dotenv').config({path: path.join(__dirname, '..', '.env')})
 
 // Configure our server app
 app = require('../express-config')(app)
+app = require('../express-routing')(app)
+
 let http = require('http').createServer(app)
 // let https = require('https').createServer({
 //     /* HTTPS options */
 //     key: fs.readFileSync(/* path */),
 //     cert: fs.readFileSync(/* path */)
 //   }, app)
-
-/**
- * I can start putting my middlewares here
- */
-app.get('/',(req, res, next)=>{
-  res.status(200)
-    .format({
-      html: _ => res.send('<p>It works!</p>'),
-      text: _ => res.send('It works!'),
-      json: _ => res.json({message: 'It works!'})
-    })
-})
 
 /**
  * Setup final error handlers & start serving the app.
