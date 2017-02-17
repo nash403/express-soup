@@ -26,6 +26,10 @@ module.exports = function (app) {
   app.set('views', path.join(__dirname, 'views'))
 
   app.use(logger('dev'))
+
+  // Allow overriding methods in query (?_method=put)
+  app.use(methodOverride('_method'))
+
   // Secure your app
   app.use(cors())
   app.use(helmet())
@@ -66,9 +70,6 @@ module.exports = function (app) {
 
   // Supply some utilities to manage pagination
   app.use(paginate.middleware(10,50))
-
-  // Allow overriding methods in query (?_method=put)
-  app.use(methodOverride('_method'))
 
   // Change the dummy favicon.ico in the public folder
   // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
