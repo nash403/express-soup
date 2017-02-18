@@ -1,22 +1,22 @@
 module.exports = function (app) {
-  let path = require('path')
-  let logger = require('morgan')
-  let cors = require('cors')
-  let helmet = require('helmet')
-  let monitor = require('express-status-monitor')
-  let compression = require('compression')
-  let cookieParser = require('cookie-parser')
-  let session = require('express-session')
-  let flash = require('connect-flash')
-  let form = require('express-busboy')
-  let validator = require('express-validator')
-  let paginate = require('express-paginate')
-  let methodOverride = require('method-override')
-  let static = require('serve-static')
-  let directoryListing = require('serve-index')
-  let favicon = require('serve-favicon')
+  const path = require('path')
+  const logger = require('morgan')
+  const methodOverride = require('method-override')
+  const cors = require('cors')
+  const helmet = require('helmet')
+  const compression = require('compression')
+  const static = require('serve-static')
+  const directoryListing = require('serve-index')
+  const monitor = require('express-status-monitor')
+  const form = require('express-busboy')
+  const validator = require('express-validator')
+  const cookieParser = require('cookie-parser')
+  const session = require('express-session')
+  const flash = require('connect-flash')
+  const paginate = require('express-paginate')
+  const favicon = require('serve-favicon')
 
-  let db = require('./dbconnection') // do something with it
+  const db = require('./dbconnection') // do something with it
 
 
   // Set some global properties
