@@ -8,7 +8,7 @@ module.exports = function (app) {
   let cookieParser = require('cookie-parser')
   let session = require('express-session')
   let flash = require('connect-flash')
-  let formidable = require('express-formidable')
+  let form = require('express-busboy')
   let validator = require('express-validator')
   let paginate = require('express-paginate')
   let methodOverride = require('method-override')
@@ -44,9 +44,10 @@ module.exports = function (app) {
   // Monit the activity of your app. Visit /status (which is the default. you can edit it).
   app.use(monitor())
 
-  // Supply form utilities
-  // app.use(formidable({ uploadDir: path.join(__dirname,'uploads_tmp'), multiples: true }))
-  // app.use(validator())
+  // Body parser and validator utilities.
+  // 'express-busboy' is used here to populate req.body and req.files
+  form.extend(app, { upload: true, path: path.join(__dirname,'uploads_tmp'), allowedPath: /./ })
+  app.use(validator())
 
   // Session & cookie
   app.use(cookieParser())
@@ -63,15 +64,15 @@ module.exports = function (app) {
     })*/
   }))
 
+  // If you use passport, here should be a good place to call passport.initialize() and passport.session().
+
   // Add support for flash messages
   app.use(flash())
-
-  // If you use passport, here should be a good place to call passport.initialize() and passport.session().
 
   // Supply some utilities to manage pagination
   app.use(paginate.middleware(10,50))
 
-  // Change the dummy favicon.ico in the public folder
+  // Uncomment this line to serve a favicon.ico. The file must exist
   // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
   return app
