@@ -12,6 +12,7 @@ module.exports = function (app) {
   const validator = require('express-validator')
   const cookieParser = require('cookie-parser')
   const session = require('express-session')
+  const passport = require('passport')
   const flash = require('connect-flash')
   const paginate = require('express-paginate')
   const favicon = require('serve-favicon')
@@ -64,7 +65,10 @@ module.exports = function (app) {
     })*/
   }))
 
-  // If you use passport, here should be a good place to call passport.initialize() and passport.session().
+  // Configure passport
+  require('./config/passport').configure()
+  app.use(passport.initialize())
+  app.use(passport.session())
 
   // Add support for flash messages
   app.use(flash())
