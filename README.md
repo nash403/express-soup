@@ -1,5 +1,10 @@
 # express-bro
-Express boilerplate for API &amp; MVC server
+A friendly Express boilerplate
+
+# TODO
+
+* write a complete readme
+* write some tests
 
 # Licence
 MIT License

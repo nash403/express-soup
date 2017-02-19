@@ -1,7 +1,7 @@
 {
-  "name": "express-bro",
+  "name": "express-soup",
   "version": "0.1.0",
-  "description": "Express boilerplate for API & MVC server",
+  "description": "A friendly Express boilerplate",
   "main": "bin/www",
   "scripts": {
     "start": "bin/www",
@@ -9,21 +9,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nash403/express-bro.git"
+    "url": "git+https://github.com/nash403/express-soup.git"
   },
   "keywords": [
-    "expressjs",
+    "express",
+    "boilerplate",
     "mvc",
-    "api",
-    "server",
-    "boilerplate"
+    "controller",
+    "passport"
   ],
   "author": "Nash403 <nash403@outlook.fr>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nash403/express-bro/issues"
+    "url": "https://github.com/nash403/express-soup/issues"
   },
-  "homepage": "https://github.com/nash403/express-bro#readme",
+  "homepage": "https://github.com/nash403/express-soup#readme",
   "dependencies": {
     "bunyan": "^1.8.5",
     "chalk": "^1.1.3",
