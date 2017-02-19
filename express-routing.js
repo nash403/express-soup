@@ -11,5 +11,8 @@ module.exports = function (app) {
       })
   })
 
+  // load controllers
+  require('./lib/boot')(app)
+
   return app
 }
