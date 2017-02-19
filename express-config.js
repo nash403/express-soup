@@ -17,7 +17,7 @@ module.exports = function (app) {
   const paginate = require('express-paginate')
   const favicon = require('serve-favicon')
 
-  const db = require('./dbconnection') // do something with it
+  const db = require('./config/dbconnection') // do something with it
 
 
   // Set some global properties
