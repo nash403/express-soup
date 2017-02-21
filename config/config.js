@@ -1,3 +1,5 @@
+const path = require('path')
+
 /*
  * Here, put the global config for your app.
  * Unlike the .env file that depends on your environment, in this file you should
@@ -13,5 +15,6 @@ module.exports = {
       pass: 'secret',
     },
     defaultFromAddress: 'First Last <test@examle.com>'
-  }
+  },
+  uploadDir: path.join(__dirname,'..', 'uploads_tmp')
 }
