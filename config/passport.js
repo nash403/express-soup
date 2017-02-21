@@ -24,10 +24,11 @@ function configure() {
   /**
    * Sign in using Email and Password. ('local')
    */
-  passport.use(new LocalStrategy({ usernameField: 'email' },
-    (email, password, done) => {
+  passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true },
+    (req, email, password, done) => {
       /**
-       * Authenticate with email and password.
+       * Authenticate with email and password. Req is passed here if you need more
+       * informations to authenticate the user.
        *
        * - If an error occur call done(err)
        * - If authentification fails call done(null, false)
