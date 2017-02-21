@@ -2,20 +2,20 @@ function configure() {
   const passport = require('passport')
       , LocalStrategy = require('passport-local').Strategy
       , BearerStrategy = require('passport-http-bearer').Strategy
-      , {BasicStrategy, DigestStrategy} = require('passport-http')
+      , {BasicStrategy, DigestStrategy} = require('passport-http');
 
 
   // Initialize passport session
 
   passport.serializeUser((user, done) => {
-    let sessionUser = { _id: user.id }
-    done(null, sessionUser)
+    let sessionUser = { _id: user.id };
+    done(null, sessionUser);
   })
 
   passport.deserializeUser((sessionUser, done) => {
     // The sessionUser object is different from the user mongoose collection
     // it's actually req.session.passport.user and comes from the session collection
-    done(null, sessionUser)
+    done(null, sessionUser);
   })
 
 
@@ -34,7 +34,7 @@ function configure() {
        * - If authentification fails call done(null, false)
        * - If authentification succeeds call done(null, user)
        */
-      done(null, false)
+      done(null, false);
   }))
 
   /**
@@ -56,7 +56,7 @@ function configure() {
        * - If authentification fails call done(null, false)
        * - If authentification succeeds call done(null, user)
        */
-      done(null, false)
+      done(null, false);
   }))
 
   /**
@@ -77,7 +77,7 @@ function configure() {
        * - If authentification fails call done(null, false)
        * - If authentification succeeds call done(null, user)
        */
-      done(null, false)
+      done(null, false);
   }))
 
   /**
@@ -99,7 +99,7 @@ function configure() {
        * - If authentification fails call done(null, false)
        * - If authentification succeeds call done(null, user, `user's password`)
        */
-      done(null, false)
+      done(null, false);
   }))
 
 

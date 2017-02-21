@@ -1,12 +1,12 @@
 const express = require('express')
   , router = express.Router()
 
-exports.prefix = '/dummy'
+exports.prefix = '/dummy';
 
 exports.before = function beforeMiddleware(req, res, next) {
   // do some stuff and call next()
-  console.log('before middleware')
-  next()
+  console.log('before middleware');
+  next();
 }
 
 router.get('/add',function (req, res, next) {
@@ -17,6 +17,6 @@ router.get('/delete',function (req, res, next) {
   res.status(200).send('<p>delete dummy</p>')
 })
 
-exports.controller = router
+exports.controller = router;
 
-module.exports = exports
+module.exports = exports;

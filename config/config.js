@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path');
 
 /*
  * Here, put the global config for your app.

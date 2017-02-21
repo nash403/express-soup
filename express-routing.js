@@ -12,7 +12,7 @@ module.exports = function (app) {
   })
 
   // load controllers
-  require('./lib/boot')(app)
+  require('./lib/boot')(app);
 
-  return app
+  return app;
 }

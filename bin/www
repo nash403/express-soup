@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-let chalk = require('chalk')
-let path = require('path')
-let app = require('express')()
+let chalk = require('chalk');
+let path = require('path');
+let app = require('express')();
 // To enable HTTPS, you can start by uncomment and complete the following lines that concern https.
 // let fs = require('fs')
 
@@ -10,13 +10,13 @@ let app = require('express')()
  * App configuration
  */
 // Populate environment variables
-require('dotenv').config({path: path.join(__dirname, '..', '.env')})
+require('dotenv').config({path: path.join(__dirname, '..', '.env')});
 
 // Configure our server app
-app = require('../express-config')(app)
-app = require('../express-routing')(app)
+app = require('../express-config')(app);
+app = require('../express-routing')(app);
 
-let http = require('http').createServer(app)
+let http = require('http').createServer(app);
 // let https = require('https').createServer({
 //     /* HTTPS options */
 //     key: fs.readFileSync(/* path */),
@@ -29,13 +29,13 @@ let http = require('http').createServer(app)
 // Error handler
 if (process.env.NODE_ENV === 'development') {
   // only use in development. In production, please handle errors in a better way.
-  app.use(require('errorhandler')())
+  app.use(require('errorhandler')());
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use((err, req, res, next) => {
-  let status = err.status || 500
+  let status = err.status || 500;
   res.format({
     json: _ => res.status(status).json({
       message: err.message,
@@ -53,13 +53,13 @@ app.use((err, req, res, next) => {
 // Last middleware.
 // Assume 404 since no middleware responded
 app.use(function(req, res, next){
-  res.sendStatus(404)
+  res.sendStatus(404);
 })
 
 // Start listening
 if (!module.parent) {
   // HTTP server
-  let http_port = app.get('http_port')
+  let http_port = app.get('http_port');
   http.listen(http_port, function() {
     console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), http_port, app.get('env'))
   })
