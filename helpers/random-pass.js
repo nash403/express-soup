@@ -1,6 +1,7 @@
-function newPassword(length = 10) {
+function newPassword(length = 10, digitsOnly = false) {
   let newPass = '';
-  let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@!?=+-_;: $€#*';
+  let digits = '0123456789';
+  let characters = digits + (digitsOnly ? '' : 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@!?=+-_;: $€#*');
   for (let i = 0; i < length; i++) {
     newPass += characters.charAt(Math.floor(Math.random() * characters.length));
   }
