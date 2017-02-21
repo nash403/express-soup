@@ -18,6 +18,7 @@ module.exports = function (app) {
   const favicon = require('serve-favicon')
 
   const db = require('./config/dbconnection') // do something with it
+  const config = require('./config/config')
 
 
   // Set some global properties
@@ -47,7 +48,7 @@ module.exports = function (app) {
 
   // Body parser and validator utilities.
   // 'express-busboy' is used here to populate req.body and req.files
-  form.extend(app, { upload: true, path: path.join(__dirname,'uploads_tmp'), allowedPath: /./ })
+  form.extend(app, { upload: true, path: config.uploadDir, allowedPath: /./ })
   app.use(validator())
 
   // Session & cookie
