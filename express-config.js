@@ -5,7 +5,7 @@ module.exports = function (app) {
   const cors = require('cors');
   const helmet = require('helmet');
   const compression = require('compression');
-  const static = require('serve-static');
+  const serveStatic = require('serve-static');
   const directoryListing = require('serve-index');
   const monitor = require('express-status-monitor');
   const form = require('express-busboy');
@@ -40,7 +40,7 @@ module.exports = function (app) {
   app.use(compression());
 
   // Serve static files and directory listing. Edit paths at your convenience.
-  app.use(static(path.join(__dirname, 'public')));
+  app.use(serveStatic(path.join(__dirname, 'public'), {'index': ['index.html', 'index.htm']}));
   app.use('/ftp', directoryListing(path.join(__dirname, 'ftp'), {icons: true}));
 
   // Monit the activity of your app. Visit /status (which is the default. you can edit it).
