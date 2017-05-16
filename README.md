@@ -1,4 +1,4 @@
-# express-bro
+# Express Soup
 A friendly Express boilerplate
 
 # TODO
