@@ -9,7 +9,7 @@
     "run-dev": "NODE_ENV=developement bin/www",
     "run-prod": "NODE_ENV=production bin/www",
     "run-pm2": "pm2 start process.json --watch",
-    "build:client": "gulp",
+    "build-client": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
