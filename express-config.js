@@ -43,6 +43,8 @@ module.exports = function (app) {
     // create a rotating write stream
     // let accessLogStream = rfs('access.log', {
     //   interval: '1d', // rotate daily
+    //   size:     '10M', // rotate every 10 MegaBytes written
+    //   compress: 'gzip', // compress rotated files
     //   path: logDirectory
     // })
 
