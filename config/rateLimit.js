@@ -1,6 +1,7 @@
 /**
  * Basic rate-limiting setup.
- * `require` this file wherever in your application to activate limitation.
+ * install express-rate-limit and `require` this file
+ * wherever in your application to activate limitation.
  *
  * Note: (from https://www.npmjs.com/package/express-rate-limit)
  * The `express-rate-limit` module does not share state with other
