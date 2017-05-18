@@ -39,19 +39,35 @@ module.exports = function (app) {
     app.use(morgan('dev'));
   } else {
     // Uncomment following lines (+the fs require) to set up log rotation
-    // const rfs = require('rotating-file-stream');
-    // let logDirectory = config.logDirectory;
+    /*const rfs = require('rotating-file-stream');
+    let logDirectory = config.logDirectory;
 
     // ensure log directory exists
-    // fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+    fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+
+    let generator = function generator(time, index) {
+      if(!time)
+          return 'access.log';
+
+      function pad(num) {
+        return (num > 9 ? "" : "0") + num;
+      }
+
+      let day    = pad(time.getDate());
+      let date  = `${time.getFullYear()}-${pad(time.getMonth() + 1)}-${day}`;
+      let hour   = pad(time.getHours());
+      let minute = pad(time.getMinutes());
+
+      return `access-${date}-${hour}hh${minute}mm.${index > 1 ? index +'.' : ''}log.gz`;
+    }
 
     // create a rotating write stream
-    // let accessLogStream = rfs('access.log', {
-    //   interval: '1d', // rotate daily
-    //   size:     '10M', // rotate every 10 MegaBytes written
-    //   compress: 'gzip', // compress rotated files
-    //   path: logDirectory
-    // })
+    let accessLogStream = rfs(generator, {
+      interval: '1d', // rotate daily
+      size:     '10M', // rotate every 10 MegaBytes written
+      compress: 'gzip', // compress rotated files
+      path: logDirectory
+    })*/
 
     app.use(morgan('combined'/*, {stream: accessLogStream}*/))
   }
