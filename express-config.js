@@ -1,5 +1,6 @@
 module.exports = function (app) {
   const path = require('path');
+  // const fs = require('fs');
   const morgan = require('morgan');
   const methodOverride = require('method-override');
   const cors = require('cors');
@@ -28,7 +29,26 @@ module.exports = function (app) {
   app.set('view engine', 'jade');
   app.set('views', path.join(__dirname, 'views'));
 
-  app.use(morgan('dev'));
+  if (process.env.NODE_ENV === 'development') {
+    // only use in development. In production, please handle errors in a better way.
+    app.use(morgan('dev'));
+  } else {
+    // Uncomment following lines (+the fs require) to set up log rotation
+    // const rfs = require('rotating-file-stream');
+    // let logDirectory = config.logDirectory;
+
+    // ensure log directory exists
+    // fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+
+    // create a rotating write stream
+    // let accessLogStream = rfs('access.log', {
+    //   interval: '1d', // rotate daily
+    //   path: logDirectory
+    // })
+
+    // setup the logger
+    app.use(morgan('combined'/*, {stream: accessLogStream}*/))
+  }
 
   // Allow overriding methods in query (?_method=put)
   app.use(methodOverride('_method'));
