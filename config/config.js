@@ -9,6 +9,7 @@ const path = require('path');
  * required anywhere in the app.
  */
 module.exports = {
+  logDirectory: path.join(__dirname,'..', 'logs'),
   mailer: {
     auth: {
       user: 'test@example.com',

@@ -19,14 +19,12 @@ module.exports.sendOne = function (templateName, locals, cb) {
   }
   emailTemplates(templatesDir, function (err, template) {
     if (err) {
-      //console.log(err);
       return cb(err);
     }
     // Send a single email.
     // templateName can be 'password_reset' for example. See the ~/views/mailer/password_reset
     template(templateName, locals, function (err, html, text) {
       if (err) {
-        //console.log(err);
         return cb(err);
       }
       // if we are testing don't send out an email instead return
