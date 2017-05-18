@@ -1,21 +1,22 @@
 module.exports = function (app) {
   const path = require('path');
-  const logger = require('morgan');
+  const morgan = require('morgan');
   const methodOverride = require('method-override');
   const cors = require('cors');
   const helmet = require('helmet');
   const compression = require('compression');
   const serveStatic = require('serve-static');
-  const directoryListing = require('serve-index');
-  const monitor = require('express-status-monitor');
+  // const directoryListing = require('serve-index');
+  // const monitor = require('express-status-monitor');
   const form = require('express-busboy');
   const validator = require('express-validator');
-  const cookieParser = require('cookie-parser');
-  const session = require('express-session');
-  const passport = require('passport');
-  const flash = require('connect-flash');
-  const paginate = require('express-paginate');
+  // const cookieParser = require('cookie-parser');
+  // const session = require('express-session');
+  // const passport = require('passport');
+  // const flash = require('connect-flash');
+  // const paginate = require('express-paginate');
   const favicon = require('serve-favicon');
+  // const io = require('socket.io')(app);
 
   const db = require('./config/dbconnection'); // do something with it
   const config = require('./config/config');
@@ -27,7 +28,7 @@ module.exports = function (app) {
   app.set('view engine', 'jade');
   app.set('views', path.join(__dirname, 'views'));
 
-  app.use(logger('dev'));
+  app.use(morgan('dev'));
 
   // Allow overriding methods in query (?_method=put)
   app.use(methodOverride('_method'));
@@ -41,10 +42,10 @@ module.exports = function (app) {
 
   // Serve static files and directory listing. Edit paths at your convenience.
   app.use(serveStatic(path.join(__dirname, 'public'), {'index': ['index.html', 'index.htm']}));
-  app.use('/ftp', directoryListing(path.join(__dirname, 'ftp'), {icons: true}));
+  // app.use('/ftp', directoryListing(path.join(__dirname, 'ftp'), {icons: true}));
 
   // Monit the activity of your app. Visit /status (which is the default. you can edit it).
-  app.use(monitor());
+  // app.use(monitor());
 
   // Body parser and validator utilities.
   // 'express-busboy' is used here to populate req.body and req.files
@@ -52,30 +53,30 @@ module.exports = function (app) {
   app.use(validator());
 
   // Session & cookie
-  app.use(cookieParser());
-  app.use(session({
-    resave: true,
-    saveUninitialized: true,
-    secret: process.env.SESSION_SECRET || 'The secret should be in your .env file!',
-    cookie: {maxAge: 15 * 24 * 3600 * 1000},
-    unset: 'destroy'
-    // Setup your session store
-    /*store: new MongoStore({
-      url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
-      autoReconnect: true
-    })*/
-  }));
+  // app.use(cookieParser());
+  // app.use(session({
+  //   resave: true,
+  //   saveUninitialized: true,
+  //   secret: process.env.SESSION_SECRET || 'The secret should be in your .env file!',
+  //   cookie: {maxAge: 15 * 24 * 3600 * 1000},
+  //   unset: 'destroy'
+  //   // Setup your session store
+  //   /*store: new MongoStore({
+  //     url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
+  //     autoReconnect: true
+  //   })*/
+  // }));
 
   // Configure passport
-  require('./config/passport').configure();
-  app.use(passport.initialize());
-  app.use(passport.session());
+  // require('./config/passport').configure();
+  // app.use(passport.initialize());
+  // app.use(passport.session());
 
   // Add support for flash messages
-  app.use(flash());
+  // app.use(flash());
 
   // Supply some utilities to manage pagination
-  app.use(paginate.middleware(10,50));
+  // app.use(paginate.middleware(10,50));
 
   // Uncomment this line to serve a favicon.ico. The file must exist
   // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
