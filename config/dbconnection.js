@@ -1,2 +1,4 @@
-// Put your database connection logic here
+/**
+ * Put your database connection logic here
+ */
 module.exports = { }

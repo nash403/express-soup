@@ -1,7 +1,5 @@
 module.exports = function (app) {
-  /**
-   * I can start putting my routing middlewares here
-   */
+  // I can start putting my routing middlewares here
   app.get('/',(req, res, next)=>{
     res.status(200)
       .format({
