@@ -1,0 +1,17 @@
+rotating-file-stream
+serve-index
+express-status-monitor
+cookie-parser
+express-session
+passport
+connect-flash
+express-paginate
+serve-favicon
+socket.io
+bcrypt
+bunyan
+email-templates
+nodemailer
+passport-http
+passport-http-bearer
+passport-local
