@@ -7,8 +7,8 @@
     "ignore_watch":["node_modules","logs","uploads","uploads_tmp"],
     "merge_logs"      : true,
     "log_date_format" : "YYYY-MM-DD HH:mm Z",
-    "log_file": "./logs/app.outerr.log",
-    "out_file": "./logs/app.out.log",
-    "error_file": "./logs/app.err.log"
+    "log_file": "./logs/access.outerr.log",
+    "out_file": "./logs/access.out.log",
+    "error_file": "./logs/access.err.log"
   }]
 }
