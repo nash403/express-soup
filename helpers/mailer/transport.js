@@ -1,6 +1,6 @@
 let config = require('../../config/config');
 let nodemailer = require('nodemailer');
-let nodemailerLogger = require('../../config/logger').nodemailerLogger;
+let nodemailerLogger = require('../logger').nodemailerLogger;
 
 // create a defaultTransport using gmail and authentication that are
 // stored in the `config.js` file.
