@@ -11,7 +11,7 @@ function createResponse(req, statusCode, responseType, message, data) {
       statusCode,
       responseType,
       message,
-      data: data || {}
+      payload: data || {}
     }
 }
 
