@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-let chalk = require('chalk');
-let path = require('path');
+const chalk = require('chalk');
+const path = require('path');
 let app = require('express')();
 // To enable HTTPS, you can start by uncomment and complete the following lines that concern https.
 // let fs = require('fs')
@@ -59,7 +59,7 @@ app.use(function(req, res, next){
 // Start listening
 if (!module.parent) {
   // Global express app properties such as `http_port` should be set in file '../express-config.js'
-    
+
   // HTTP server
   let http_port = app.get('http_port');
   http.listen(http_port, function() {
