@@ -9,7 +9,6 @@ const path = require('path');
  * required anywhere in the app.
  */
 module.exports = {
-  logDirectory: path.join(__dirname,'..', 'logs'),
   mailer: {
     auth: {
       user: 'test@example.com',
@@ -17,5 +16,19 @@ module.exports = {
     },
     defaultFromAddress: 'First Last <test@examle.com>'
   },
-  uploadDir: path.join(__dirname,'..', 'uploads_tmp')
+  logDirectory: path.join(__dirname,'..', 'logs'),
+  uploadDirectory: path.join(__dirname,'..', 'uploads_tmp'),
+  publicDirectory: path.join(__dirname,'..', 'public'),
+  indexingDirectory: path.join(__dirname,'..', 'ftp'),
+
+  COMPRESSION_MIDDLEWARE: true,
+  STATIC_MIDDLEWARE: true,
+  RATE_LIMIT_MIDDLEWARE: false,
+  MONITOR_MIDDLEWARE: false,
+  VALIDATORS_MIDDLEWARE: false,
+  COOKIES_MIDDLEWARE: false,
+  SESSIONS_MIDDLEWARE: false,
+  PASSPORT_MIDDLEWARE: false,
+  FLASH_MIDDLEWARE: false,
+  PAGINATION_MIDDLEWARE :false
 }
