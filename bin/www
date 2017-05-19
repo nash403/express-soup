@@ -3,8 +3,6 @@
 const chalk = require('chalk');
 const path = require('path');
 let app = require('express')();
-// To enable HTTPS, you can start by uncomment and complete the following lines that concern https.
-// let fs = require('fs')
 
 /**
  * App configuration
@@ -17,6 +15,8 @@ app = require('../express-config')(app);
 app = require('../express-routing')(app);
 
 let http = require('http').createServer(app);
+// Enable HTTPS
+// let fs = require('fs')
 // let https = require('https').createServer({
 //     /* HTTPS options */
 //     key: fs.readFileSync(/* path */),
@@ -58,8 +58,9 @@ app.use(function(req, res, next){
 
 // Start listening
 if (!module.parent) {
-  // Global express app properties such as `http_port` should be set in file '../express-config.js'
+  // Global express app properties such as `http_port` are set in file `~/express-config.js`
 
+  console.log('  Press CTRL-C to stop\n')
   // HTTP server
   let http_port = app.get('http_port');
   http.listen(http_port, function() {
@@ -70,5 +71,4 @@ if (!module.parent) {
   // https.listen(https_port, function() {
   //   console.log('%s Secure App is running at http://localhost:%d in %s mode', chalk.green('✓'), https_port, app.get('env'))
   // })
-  console.log('  Press CTRL-C to stop\n')
 }
